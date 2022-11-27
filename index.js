@@ -125,10 +125,12 @@ function writeToFile(fileName, data) {
 }
 
 // TODO: Create a function to initialize app
-const init = () => {
-    askQuestions()
-        .then((data) => writeFile("README.md", generateMarkdown(data)))
-        .catch((err) => console.error(err));
+function init() {
+    inquirer.prompt(questions)
+        .then(function (userInput) {
+            console.log(userInput)
+            writeToFile("README.md", generateMarkdown(userInput));
+        });
 };
 
 
